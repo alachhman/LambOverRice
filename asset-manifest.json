@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/lamboverrice/static/css/main.d9ac9d1d.css",
-    "main.js": "/lamboverrice/static/js/main.f4871033.js",
-    "static/js/787.09580dff.chunk.js": "/lamboverrice/static/js/787.09580dff.chunk.js",
-    "index.html": "/lamboverrice/index.html",
-    "main.d9ac9d1d.css.map": "/lamboverrice/static/css/main.d9ac9d1d.css.map",
-    "main.f4871033.js.map": "/lamboverrice/static/js/main.f4871033.js.map",
-    "787.09580dff.chunk.js.map": "/lamboverrice/static/js/787.09580dff.chunk.js.map"
+    "main.css": "/static/css/main.d9ac9d1d.css",
+    "main.js": "/static/js/main.b1d5f072.js",
+    "static/js/787.09580dff.chunk.js": "/static/js/787.09580dff.chunk.js",
+    "index.html": "/index.html",
+    "main.d9ac9d1d.css.map": "/static/css/main.d9ac9d1d.css.map",
+    "main.b1d5f072.js.map": "/static/js/main.b1d5f072.js.map",
+    "787.09580dff.chunk.js.map": "/static/js/787.09580dff.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9ac9d1d.css",
-    "static/js/main.f4871033.js"
+    "static/js/main.b1d5f072.js"
   ]
 }
