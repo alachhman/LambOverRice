@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 
 const prices = {
@@ -13,12 +13,16 @@ function App() {
     let [meatPref, setMeatPref] = React.useState("Lamb");
     let [currency, setCurrency] = React.useState("USD");
 
+    useEffect(() => {
+        document.title = "How Much Halal Can I Afford?"
+    }, []);
+
     const toggleMeat = () => {
         console.log("Test")
         setMeatPref(value => (value === "Lamb") ? "Chicken" : "Lamb")
     }
     const updateOutput = (x) => {
-        let input = x.target.value;
+        let input = Math.floor(x.target.value);
         let data = {
             prefRice: {
                 rice: Math.floor(input / prices.rice),
