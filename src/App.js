@@ -7,7 +7,6 @@ function App() {
     const [animTrigger, setAnimTrigger] = useState(false)
     const [animDone, setAnimDone] = useState(false)
     const [showQuestion, setShowQuestion] = useState(false)
-    const [questionText, setQuestionText] = useState("How Much Halal Can I Afford?")
 
     const triggerAnim = () => {
         setAnimTrigger(true)
@@ -28,7 +27,7 @@ function App() {
                     {
                         animDone &&
                         <h3 className="titleText" style={{marginLeft: "16px"}}>
-                            {questionText}
+                            How Much Halal Can I Afford?
                         </h3>
                     }
                 </div>

@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 .container {
@@ -59,21 +60,53 @@
     white-space: nowrap;
 }
 
+.questionContainer {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%
+}
+
 .questionText {
+    font-size: 24px;
+    font-weight: bolder;
+    margin-bottom: 22px;
+}
+
+.advanceButton {
+    padding: 8px;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    background: #4a5b93;
+    box-shadow: 10px 10px 10px #3c4560,
+    10px 10px 10px #555e88,
+    0 0 0 #3c4560 inset,
+    0 0 0 #555e88 inset;
+}
+
+.fadeIn {
     animation: textAnim 1s forwards;
 }
 
 @keyframes textAnim {
     0% {
         color: rgba(224, 224, 224, 0);
+        opacity: 0;
     }
     33% {
         color: rgba(224, 224, 224, 0.55);
+        opacity: 55%;
     }
     66% {
         color: rgba(224, 224, 224, 0.9);
+        opacity: 90%;
     }
     100% {
         color: rgba(224, 224, 224, 1);
+        opacity: 100%;
     }
 }
