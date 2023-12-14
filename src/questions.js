@@ -17,33 +17,35 @@ let Questions = () => {
             question: "What's your budget?",
             type: "text",
             choices: [],
-            on: () => {
-            }
+            on: () => {setAnswers({...answers, budget: parseInt(choice)})}
         },
         {
             question: "Lamb or Chicken?",
             type: "button",
             choices: ["Lamb", "Chicken", "Falafel", "Combo"],
-            on: () => {
-            }
+            on: () => {setAnswers({...answers, meat: choice})}
         },
         {
             question: "Rice or Pita?",
             type: "button",
             choices: ["Rice", "Pita"],
-            on: () => {
-            }
+            on: () => {setAnswers({...answers, carb: choice})}
         },
         {
             question: "Need a beverage?",
             type: "button",
             choices: ["Yes", "No"],
-            on: () => {
-            }
+            on: () => {setAnswers({...answers, bev: choice})}
         },
     ]
 
-    const handleNext = () => {
+    const handleNext = (on) => {
+        console.log(choice)
+        if(choice !== "") {
+            on()
+            setChoice("")
+        }
+
         if (i + 1 >= pool.length) {
             console.log(answers)
         } else {
@@ -51,14 +53,42 @@ let Questions = () => {
         }
     }
 
-    const InputQuestion = () => <input type="number"/>;
+    const InputQuestion = (props) => {
+        const setChoice = props.set;
+
+        return (
+            <div className="dollarSign">
+                <input
+                    onChange={(event) => setChoice(event.target.value)}
+                    className="inputBox"
+                    type="number"
+                />
+            </div>
+        )
+    }
 
     const RadioQuestion = (props) => {
         const question = props.q;
         const setChoice = props.set;
-        return <>
-            {question.choices.map((x, i) => <button onClick={() => setChoice(x)} key={i}>{x}</button>)}
-        </>
+        const choice = props.choice;
+
+        const handleClick = (value) => {
+            setChoice(value)
+        }
+
+        return <div className="radioButtons">
+            {
+                question.choices.map(
+                    (x, i) =>
+                        <button
+                            className={x === choice ? "radioChoicePicked" : "radioChoice"}
+                            onClick={() => handleClick(x)} key={i}
+                        >
+                            {x}
+                        </button>
+                )
+            }
+        </div>
     }
 
     return <div className="questionContainer fadeIn">
@@ -67,10 +97,10 @@ let Questions = () => {
         </div>
         {
             pool[i].type === "text"
-                ? <InputQuestion/>
-                : <RadioQuestion set={setChoice} q={pool[i]}/>
+                ? <InputQuestion set={setChoice}/>
+                : <RadioQuestion choice={choice} set={setChoice} q={pool[i]}/>
         }
-        <button className="advanceButton" onClick={() => handleNext()}>
+        <button className="advanceButton" onClick={() => handleNext(() => pool[i].on)}>
             {i + 1 >= pool.length ? "Submit" : "Next"}
         </button>
     </div>

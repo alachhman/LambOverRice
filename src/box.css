@@ -75,7 +75,67 @@
 }
 
 .advanceButton {
-    padding: 8px;
+    padding: 16px 8px;
+    background: #165f80;
+    margin-top: auto;
+    margin-bottom: 85px;
+}
+
+.radioButtons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+.radioChoice {
+    padding: 12px 8px;
+    width: 100%;
+}
+
+.radioChoicePicked {
+    background: #6f7bab;
+    padding: 12px 8px;
+    width: 100%;
+}
+
+.inputBox {
+    height: 32px;
+    width: 90%;
+    padding-left: 24px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid white;
+    background: #454e6e;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.dollarSign {
+    position: relative;
+    display: inline-block;
+}
+
+.dollarSign::before {
+    content: '$';
+    position: absolute;
+    left: 5px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-55%);
 }
 
 button {
