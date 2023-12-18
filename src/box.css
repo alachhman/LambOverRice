@@ -148,6 +148,16 @@ button {
     0 0 0 #555e88 inset;
 }
 
+.resultsContainer {
+    font-size: 20px;
+    height: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .fadeIn {
     animation: textAnim 1s forwards;
 }

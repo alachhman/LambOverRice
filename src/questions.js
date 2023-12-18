@@ -1,94 +1,67 @@
 import './box.css'
 import {useState} from "react";
+import InputQuestion from "./components/inputQuestions";
+import RadioQuestion from "./components/radioQuestion";
+import ConfirmationQuestion from "./components/confirmationQuestion";
 
 let Questions = () => {
-    const [answers, setAnswers] = useState({
-        budget: 0,
-        meat: "",
-        carb: "",
-        bev: ""
-    })
+    const [budget, setBudget] = useState(0)
+    const [meat, setMeat] = useState("")
+    const [carb, setCarb] = useState("")
+    const [bev, setBev] = useState("")
 
     const [i, setI] = useState(0)
     const [choice, setChoice] = useState("")
+
+    const logAnswers = (x) => console.log(x ? x : "", budget, meat, carb, bev)
+    const isNotLastPage = () => i + 1 < pool.length
 
     const pool = [
         {
             question: "What's your budget?",
             type: "text",
             choices: [],
-            on: () => {setAnswers({...answers, budget: parseInt(choice)})}
+            on: () => setBudget(parseInt(choice))
         },
         {
             question: "Lamb or Chicken?",
             type: "button",
             choices: ["Lamb", "Chicken", "Falafel", "Combo"],
-            on: () => {setAnswers({...answers, meat: choice})}
+            on: () => setMeat(choice)
         },
         {
             question: "Rice or Pita?",
             type: "button",
-            choices: ["Rice", "Pita"],
-            on: () => {setAnswers({...answers, carb: choice})}
+            choices: ["Rice", "Pita", "Either"],
+            on: () => setCarb(choice)
         },
         {
             question: "Need a beverage?",
             type: "button",
             choices: ["Yes", "No"],
-            on: () => {setAnswers({...answers, bev: choice})}
+            on: () => setBev(choice)
         },
+        {
+            question: "Is this correct?",
+            type: "confirm",
+            choices: [],
+            on: () => setI(0)
+        }
     ]
 
     const handleNext = (on) => {
-        console.log(choice)
-        if(choice !== "") {
+        if (choice !== "") {
             on()
             setChoice("")
-        }
-
-        if (i + 1 >= pool.length) {
-            console.log(answers)
-        } else {
             setI(i + 1)
         }
+        console.log(choice)
     }
 
-    const InputQuestion = (props) => {
-        const setChoice = props.set;
-
-        return (
-            <div className="dollarSign">
-                <input
-                    onChange={(event) => setChoice(event.target.value)}
-                    className="inputBox"
-                    type="number"
-                />
-            </div>
-        )
-    }
-
-    const RadioQuestion = (props) => {
-        const question = props.q;
-        const setChoice = props.set;
-        const choice = props.choice;
-
-        const handleClick = (value) => {
-            setChoice(value)
-        }
-
-        return <div className="radioButtons">
-            {
-                question.choices.map(
-                    (x, i) =>
-                        <button
-                            className={x === choice ? "radioChoicePicked" : "radioChoice"}
-                            onClick={() => handleClick(x)} key={i}
-                        >
-                            {x}
-                        </button>
-                )
-            }
-        </div>
+    const handleSubmit = (on) => {
+        on()
+        setChoice("")
+        logAnswers("submit clicked")
     }
 
     return <div className="questionContainer fadeIn">
@@ -97,15 +70,21 @@ let Questions = () => {
         </div>
         {
             pool[i].type === "text"
-                ? <InputQuestion set={setChoice}/>
-                : <RadioQuestion choice={choice} set={setChoice} q={pool[i]}/>
+                ? <InputQuestion set={setChoice} value={choice}/>
+                : pool[i].type === "button"
+                    ? <RadioQuestion choice={choice} set={setChoice} q={pool[i]}/>
+                    : <ConfirmationQuestion results={{budget, meat, carb, bev}}/>
         }
-        <button className="advanceButton" onClick={() => handleNext(() => pool[i].on)}>
-            {i + 1 >= pool.length ? "Submit" : "Next"}
-        </button>
+        {
+            isNotLastPage()
+                ? <button className="advanceButton" onClick={() => handleNext(pool[i].on)}>
+                    Next
+                </button>
+                : <button className="advanceButton" onClick={() => handleSubmit(pool[i].on)}>
+                    Submit
+                </button>
+        }
     </div>
-
-
 }
 
 export default Questions
