@@ -9,7 +9,7 @@ const ConfirmationQuestion = (props) => {
 				{
 					results.carb === "Either"
 						? results.meat + " over rice, or in a gyro,"
-						: results.meat + ((results.carb === "Rice") ? " over rice," : " gyro,")
+						: "some " + results.meat + ((results.carb === "Rice") ? " over rice," : " gyro,")
 				}
 			</div>
 			<div>

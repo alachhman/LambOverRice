@@ -5,3 +5,12 @@ html, body, #root {
   color: #e0e0e0;
   font-family: Sans-Serif, serif;
 }
+
+.divider {
+  border: 1px solid white;
+  margin: 8px;
+}
+
+ul {
+  list-style-type: none;
+}
